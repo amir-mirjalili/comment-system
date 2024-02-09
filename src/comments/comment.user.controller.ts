@@ -13,7 +13,7 @@ import { CommentFindService } from './services/comment.find.service';
 import { CommentDeleteService } from './services/comment.delete.service';
 
 @Controller('comments/user')
-export class CommentsController {
+export class CommentUserController {
   constructor(
     private readonly commentInsertService: CommentInsertService,
     private readonly commentFindService: CommentFindService,
@@ -27,7 +27,7 @@ export class CommentsController {
 
   @Get(':userId')
   async findAll(@Param('userId') userId: string) {
-    return this.commentFindService.getAll(userId);
+    return this.commentFindService.getByUserId(userId);
   }
 
   @Delete(':userId')

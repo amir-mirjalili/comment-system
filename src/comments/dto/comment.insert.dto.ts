@@ -1,4 +1,4 @@
-import { IsBoolean, IsOptional, IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
 
 export class CommentInsertDto {
   @IsString()
@@ -8,6 +8,5 @@ export class CommentInsertDto {
   parentId: string;
   @IsString()
   @IsOptional()
-  userId:string
-
+  userId: string;
 }

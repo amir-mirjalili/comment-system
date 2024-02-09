@@ -4,18 +4,16 @@ import { Comment } from '../schemas/comment.schema';
 import { Model } from 'mongoose';
 
 @Injectable()
-export class CommentFindService {
+export class CommentUpdateService {
   constructor(
     @InjectModel(Comment.name) private commentModel: Model<Comment>,
   ) {}
 
-  async getByUserId(userId: string) {
-    return this.commentModel
-      .find({ userId, approved: true })
-      .populate('parentId');
-  }
-
-  async getAll() {
-    return this.commentModel.find({}).populate('parentId');
+  async approveByAdmin(id: string, approved: boolean) {
+    return this.commentModel.findByIdAndUpdate(
+      { _id: id },
+      { approved },
+      { new: true },
+    );
   }
 }
